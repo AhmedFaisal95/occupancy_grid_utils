@@ -29,8 +29,8 @@
  */
 
 /**
- * \file 
- * 
+ * \file
+ *
  * Implementation of file ops
  *
  * \author Bhaskara Marthi
@@ -61,6 +61,7 @@ namespace gm=geometry_msgs;
 #include <stdlib.h>
 #include <stdio.h>
 
+#include <opencv2/opencv.hpp>
 #include <opencv2/imgproc/imgproc.hpp>
 #include <opencv2/highgui/highgui.hpp>
 
@@ -88,7 +89,7 @@ loadMapFromFile(nav_msgs::GetMap::Response* resp,
               fname + std::string("\"");
       throw std::runtime_error(errmsg);
   }
-  cvtColor(imgColor, img, CV_BGR2GRAY);
+  cvtColor(imgColor, img, cv::BGR2GRAY);
 
   // Copy the image data into the map structure
   resp->map.info.width = img.rows;
@@ -121,7 +122,7 @@ loadMapFromFile(nav_msgs::GetMap::Response* resp,
         occ = color_avg / 255.0;
       else
         occ = (255 - color_avg) / 255.0;
-      
+
       // Apply thresholds to RGB means to determine occupancy values for
       // map.  Note that we invert the graphics-ordering of the pixels to
       // produce a map with cell (0,0) in the lower-left corner.
