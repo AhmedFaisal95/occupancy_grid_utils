@@ -39,8 +39,8 @@
 #include <occupancy_grid_utils/file.h>
 #include <tf/transform_datatypes.h>
 #include <nav_msgs/GetMap.h>
-#include <opencv2/imgproc/imgproc.hpp>
-#include <opencv2/highgui/highgui.hpp>
+#include <opencv2/imgproc.hpp>
+#include <opencv2/highgui.hpp>
 
 namespace occupancy_grid_utils
 {
@@ -61,9 +61,9 @@ namespace gm=geometry_msgs;
 #include <stdlib.h>
 #include <stdio.h>
 
-#include <opencv2/opencv.hpp>
-#include <opencv2/imgproc/imgproc.hpp>
-#include <opencv2/highgui/highgui.hpp>
+#include <opencv2/core.hpp>
+#include <opencv2/imgproc.hpp>
+#include <opencv2/highgui.hpp>
 
 #include "LinearMath/btMatrix3x3.h"
 
@@ -89,7 +89,7 @@ loadMapFromFile(nav_msgs::GetMap::Response* resp,
               fname + std::string("\"");
       throw std::runtime_error(errmsg);
   }
-  cvtColor(imgColor, img, cv::BGR2GRAY);
+  cvtColor(imgColor, img, cv::COLOR_BGR2GRAY);
 
   // Copy the image data into the map structure
   resp->map.info.width = img.rows;
